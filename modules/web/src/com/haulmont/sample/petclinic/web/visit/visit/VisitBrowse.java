@@ -59,6 +59,13 @@ public class VisitBrowse extends StandardLookup<Visit> {
                 .show();
     }
 
+    private String regularCheckupDescriptionContent(Pet pet) {
+        return messageBundle.formatMessage("regularCheckupContent",
+                pet.getName(),
+                pet.getIdentificationNumber()
+        );
+    }
+
     private void showRegularCheckupCreatedNotification(Pet pet) {
 
         String petName = metadataTools.getInstanceName(pet);
@@ -67,13 +74,6 @@ public class VisitBrowse extends StandardLookup<Visit> {
         notifications.create(Notifications.NotificationType.TRAY)
                 .withCaption(regularCheckupCreatedMessage)
                 .show();
-    }
-
-    private String regularCheckupDescriptionContent(Pet pet) {
-        return messageBundle.formatMessage("regularCheckupContent",
-                pet.getName(),
-                pet.getIdentificationNumber()
-        );
     }
 
 

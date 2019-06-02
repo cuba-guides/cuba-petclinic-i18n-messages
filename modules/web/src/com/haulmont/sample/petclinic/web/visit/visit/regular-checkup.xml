@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://createCaption"
+        focusComponent="fieldGroup"
+        messagesPack="com.haulmont.sample.petclinic.web.visit.visit">
+    <data>
+        <instance id="visitDc"
+                  class="com.haulmont.sample.petclinic.entity.visit.Visit"
+                  view="visit-with-pet">
+            <loader/>
+        </instance>
+
+        <collection id="petsDc" class="com.haulmont.sample.petclinic.entity.pet.Pet" view="_base">
+            <loader>
+                <query>
+                    select e from petclinic_Pet e
+                </query>
+            </loader>
+        </collection>
+    </data>
+
+    <layout expand="editActions" spacing="true">
+        <form id="fieldGroup" dataContainer="visitDc" width="100%">
+            <column width="300px">
+                <lookupPickerField property="pet" optionsContainer="petsDc" editable="false"/>
+                <dateField property="visitDate"/>
+                <textArea rows="10" property="description"/>
+            </column>
+        </form>
+
+
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
